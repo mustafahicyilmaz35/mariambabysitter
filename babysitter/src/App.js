@@ -3,11 +3,12 @@ import './App.css';
 import Mariam from './mariam';
 import Name from './name';
 import Dinamik from './dinamik';
+import Header from './header';
 
 function App() {
  return (
-   <div>
-    <h1>Hello</h1>
+   <div id="App">
+      <Header/>
    </div>
  );
 }

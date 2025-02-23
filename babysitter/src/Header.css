@@ -1,0 +1,113 @@
+/* Header stil düzenlemeleri */
+.header-main-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    /* Arka plan rengini değiştirebilirsiniz */
+}
+
+#header-logo img {
+    max-width: 150px;
+    /* Logonun boyutunu ayarlayın */
+}
+
+#header-nav {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.nav-links {
+    display: flex;
+    list-style-type: none;
+    padding: 0;
+}
+
+.nav-links li {
+    margin: 0 20px;
+}
+
+.nav-links a {
+    text-decoration: none;
+    font-size: 18px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.nav-links a:hover {
+    color: #007BFF;
+    /* Hover rengini değiştirebilirsiniz */
+}
+
+/* Join us kısmı */
+#header-join-us a {
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #007BFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+#header-join-us a:hover {
+    background-color: #0056b3;
+}
+
+/* Responsive tasarım */
+@media (max-width: 768px) {
+    .header-main-container {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .nav-links {
+        flex-direction: column;
+        margin-top: 20px;
+    }
+
+    .nav-links li {
+        margin: 10px 0;
+    }
+}
+
+/* Sosyal medya ikonları stil düzenlemeleri */
+#header-social-media {
+    margin-top: 20px;
+    text-align: center;
+}
+
+.social-media-icons {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.social-media-icons li {
+    margin: 0 15px;
+}
+
+.social-media-icons a {
+    text-decoration: none;
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.social-media-icons a:hover {
+    color: #007BFF;
+    /* Hover rengini değiştirebilirsiniz */
+}
+
+/* Daha küçük ekranlar için responsive tasarım */
+@media (max-width: 768px) {
+    .social-media-icons li {
+        margin: 0 10px;
+    }
+
+    .social-media-icons a {
+        font-size: 20px;
+    }
+}
