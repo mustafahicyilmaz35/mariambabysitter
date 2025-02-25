@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom"; // Link bileşenini ekliyoruz
 import "./Card.css";
 
 function CardList() {
@@ -68,7 +69,6 @@ function CardList() {
 
   const [showAll, setShowAll] = useState(false);
 
-  // Sol ve sağ ok ile kaydırma fonksiyonları
   const [scrollIndex, setScrollIndex] = useState(0);
 
   const handleScrollLeft = () => {
@@ -100,18 +100,21 @@ function CardList() {
           >
             {babysitters.slice(0, 10).map((babysitter, index) => (
               <div className="card" key={index}>
-                <img
-                  src={babysitter.image}
-                  alt={babysitter.name}
-                  className="card-image"
-                />
-                <div className="card-info">
-                  <div className="card-name">{babysitter.name}</div>
-                  <div className="card-location">{babysitter.location}</div>
-                  <div className="card-reviews">
-                    {babysitter.reviews} Reviews
+                {/* Link bileşenini ekliyoruz, her kartı tıklanabilir yapıyoruz */}
+                <Link to={`/babysitter/${babysitter.name}`}>
+                  <img
+                    src={babysitter.image}
+                    alt={babysitter.name}
+                    className="card-image"
+                  />
+                  <div className="card-info">
+                    <div className="card-name">{babysitter.name}</div>
+                    <div className="card-location">{babysitter.location}</div>
+                    <div className="card-reviews">
+                      {babysitter.reviews} Reviews
+                    </div>
                   </div>
-                </div>
+                </Link>
               </div>
             ))}
           </div>
@@ -129,16 +132,21 @@ function CardList() {
         <div className="card-list">
           {babysitters.map((babysitter, index) => (
             <div className="card" key={index}>
-              <img
-                src={babysitter.image}
-                alt={babysitter.name}
-                className="card-image"
-              />
-              <div className="card-info">
-                <div className="card-name">{babysitter.name}</div>
-                <div className="card-location">{babysitter.location}</div>
-                <div className="card-reviews">{babysitter.reviews} Reviews</div>
-              </div>
+              {/* Link bileşenini ekliyoruz, her kartı tıklanabilir yapıyoruz */}
+              <Link to={`/babysitter/${babysitter.name}`}>
+                <img
+                  src={babysitter.image}
+                  alt={babysitter.name}
+                  className="card-image"
+                />
+                <div className="card-info">
+                  <div className="card-name">{babysitter.name}</div>
+                  <div className="card-location">{babysitter.location}</div>
+                  <div className="card-reviews">
+                    {babysitter.reviews} Reviews
+                  </div>
+                </div>
+              </Link>
             </div>
           ))}
         </div>
