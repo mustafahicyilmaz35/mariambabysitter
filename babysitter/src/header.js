@@ -1,19 +1,18 @@
-import './Header.css';
+import "./Header.css";
+import { Link } from "react-router-dom"; // React Router ile sayfalar arası geçiş yapabilmek için
+
 function Header() {
   return (
     <header>
-      <div id="header-main-container" class="header-main-container">
+      <div id="header-main-container" className="header-main-container">
         <div id="header-logo">
-          <img src="/logo.jpg" alt="babysitter" class="header-logo" />
+          <img src="/logo.jpg" alt="babysitter" className="header-logo" />
         </div>
         <div id="header-nav">
           <ul className="nav-links">
             <li>
               <a href="#home">Home</a>
             </li>
-            {/* <li>
-              <a href="#services">Services</a>
-            </li> */}
             <li>
               <a href="#about">About</a>
             </li>
@@ -59,6 +58,20 @@ function Header() {
               >
                 <i className="fab fa-linkedin-in"></i>
               </a>
+            </li>
+          </ul>
+        </div>
+        <div id="header-auth-buttons">
+          <ul className="auth-buttons">
+            <li>
+              <Link to="/signin">
+                <button className="signin-btn">Sign In</button>
+              </Link>
+            </li>
+            <li>
+              <Link to="/signup">
+                <button className="signup-btn">Sign Up</button>
+              </Link>
             </li>
           </ul>
         </div>

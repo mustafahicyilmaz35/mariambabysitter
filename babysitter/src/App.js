@@ -8,6 +8,8 @@ import Header from './header';
 import Footer from './Footer';
 import CardList from './CardList';
 import BabysitterDetail from './BabysitterDetail';
+import SignUp from './Signup';
+import SignIn from './SignIn';
 
 function App() {
  return (
@@ -15,12 +17,14 @@ function App() {
      <div id="App">
        <Header />
        <Routes>
-          {/* Anasayfa: Bebek bakıcısı kartlarını gösteriyoruz */}
-          <Route path="/" element={<CardList />} />
-          
-          {/* Detay sayfası: Kart tıklanınca açılacak */}
-          <Route path="/babysitter/:name" element={<BabysitterDetail />} />
-        </Routes>
+         {/* Anasayfa: Bebek bakıcısı kartlarını gösteriyoruz */}
+         <Route path="/" element={<CardList />} />
+
+         {/* Detay sayfası: Kart tıklanınca açılacak */}
+         <Route path="/babysitter/:name" element={<BabysitterDetail />} />
+         <Route path="/signup" element={<SignUp />} />
+         <Route path="/signin" element={<SignIn />} />
+       </Routes>
        {/* <CardList /> */}
        <Footer />
      </div>
