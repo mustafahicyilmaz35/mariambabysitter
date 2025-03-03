@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { useParams, useNavigate } from "react-router-dom"; // We'll use URL parameters and navigate to go back
-import "./BabysitterDetail.css"; // Import the CSS file for styling
+import { useParams, useNavigate } from "react-router-dom";
+import "./BabysitterDetail.css";
 
 function BabysitterDetail() {
-  const { name } = useParams(); // Getting the babysitter's name from URL params
-  const navigate = useNavigate(); // Using navigate to go back
+  const { name } = useParams();
+  const navigate = useNavigate();
 
-  // Example babysitter data
   const babysitters = [
     {
       name: "Aisha",
@@ -40,56 +39,52 @@ function BabysitterDetail() {
         },
       ],
     },
-    // ... (Other babysitter data)
   ];
 
   const [newComment, setNewComment] = useState("");
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
+  const [paymentMethod, setPaymentMethod] = useState("creditCard");
+  const [showModal, setShowModal] = useState(false);
   const [paymentDetails, setPaymentDetails] = useState({
     cardNumber: "",
     expiryDate: "",
     cvv: "",
   });
-  const [paymentSuccess, setPaymentSuccess] = useState(false);
 
-  // Find the selected babysitter based on the name from the URL
+  const handlePaymentMethodChange = (event) => {
+    setPaymentMethod(event.target.value);
+  };
+
+  const handleMessageChange = (event) => {
+    setNewMessage(event.target.value);
+  };
+
+  const handleSendMessage = () => {
+    if (newMessage.trim()) {
+      setMessages([...messages, { sender: "You", text: newMessage }]);
+      setNewMessage(""); // Mesaj gönderildikten sonra input temizlenir.
+    }
+  };
+
+  const handlePaymentDetailsChange = (event) => {
+    const { name, value } = event.target;
+    setPaymentDetails((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmitPayment = () => {
+    alert("Payment details submitted!");
+    setShowModal(false); // Modal'ı kapat
+  };
+
   const babysitter = babysitters.find((b) => b.name === name);
 
   if (!babysitter) {
-    return <div>Babysitter not found</div>; // If no babysitter is found, display this message
+    return <div>Babysitter not found</div>;
   }
-
-  const handleCommentChange = (event) => {
-    setNewComment(event.target.value);
-  };
-
-  const handleCommentSubmit = (event) => {
-    event.preventDefault();
-    if (newComment.trim()) {
-      babysitter.comments.push({ author: "Anonymous", comment: newComment });
-      setNewComment("");
-    }
-  };
-
-  const handlePaymentChange = (event) => {
-    const { name, value } = event.target;
-    setPaymentDetails({ ...paymentDetails, [name]: value });
-  };
-
-  const handlePaymentSubmit = (event) => {
-    event.preventDefault();
-
-    // Simulate a successful payment
-    if (
-      paymentDetails.cardNumber &&
-      paymentDetails.expiryDate &&
-      paymentDetails.cvv
-    ) {
-      setPaymentSuccess(true);
-      alert("Payment successful! Your babysitter has been booked.");
-    } else {
-      alert("Please fill in all payment details.");
-    }
-  };
 
   return (
     <div className="babysitter-detail-container">
@@ -114,90 +109,97 @@ function BabysitterDetail() {
           <p>{babysitter.bio}</p>
         </div>
 
-
-    
-
-
-
-
-        {/* Yorumlar Kısmı */}
+        {/* Yorumlar Bölümü */}
         <div className="comments-section">
           <h3>Comments</h3>
           <div className="comments-list">
             {babysitter.comments.map((comment, index) => (
               <div key={index} className="comment">
-                <strong>{comment.author}</strong>: {comment.comment}
+                <strong>{comment.author}:</strong> {comment.comment}
               </div>
             ))}
           </div>
-
-          <form onSubmit={handleCommentSubmit} className="comment-form">
-            <textarea
-              value={newComment}
-              onChange={handleCommentChange}
-              placeholder="Add a comment..."
-              className="comment-input"
-            ></textarea>
-            <button type="submit" className="comment-button">
-              Add Comment
-            </button>
-          </form>
         </div>
 
-        {/* Ödeme Formu Kısmı */}
-        <div className="payment-section">
-          <h3>Payment</h3>
-          <form onSubmit={handlePaymentSubmit} className="payment-form">
-            <div className="payment-input-group">
-              <label>Card Number</label>
-              <input
-                type="text"
-                name="cardNumber"
-                value={paymentDetails.cardNumber}
-                onChange={handlePaymentChange}
-                placeholder="Enter your card number"
-                required
-              />
-            </div>
-            <div className="payment-input-group">
-              <label>Expiry Date (MM/YY)</label>
-              <input
-                type="text"
-                name="expiryDate"
-                value={paymentDetails.expiryDate}
-                onChange={handlePaymentChange}
-                placeholder="MM/YY"
-                required
-              />
-            </div>
-            <div className="payment-input-group">
-              <label>CVV</label>
-              <input
-                type="text"
-                name="cvv"
-                value={paymentDetails.cvv}
-                onChange={handlePaymentChange}
-                placeholder="CVV"
-                required
-              />
-            </div>
-            <button type="submit" className="payment-button">
-              Pay Now
-            </button>
-          </form>
-          <div className="payment-methods">
-            <img
-              src="/visamaster.jpg"
-              alt="Visamaster"
-              style={{ width: "200px" }}
-            />
-            
+        {/* Mesajlaşma Kısmı */}
+        <div className="message-section">
+          <h3>Messages</h3>
+          <div className="message-container">
+            {messages.map((message, index) => (
+              <div key={index} className="message">
+                <strong>{message.sender}:</strong> {message.text}
+              </div>
+            ))}
           </div>
-
-          {paymentSuccess && (
-            <p className="payment-success">Payment Successful!</p>
-          )}
+          <textarea
+            value={newMessage}
+            onChange={handleMessageChange}
+            placeholder="Type your message here..."
+          />
+          <button onClick={handleSendMessage}>Send Message</button>
         </div>
+
+        {/* Ödeme Yöntemi */}
+        <div className="payment-section">
+          <h3>Choose Payment Method</h3>
+          <select value={paymentMethod} onChange={handlePaymentMethodChange}>
+            <option value="creditCard">Credit Card</option>
+            <option value="paypal">PayPal</option>
+            <option value="bankTransfer">Bank Transfer</option>
+          </select>
+          <button onClick={() => setShowModal(true)}>Proceed to Payment</button>
+        </div>
+
+        {/* Modal */}
+        {showModal && (
+          <div className="modal">
+            <div className="modal-content">
+              <button
+                className="close-button"
+                onClick={() => setShowModal(false)}
+              >
+                X
+              </button>
+              <h3>Enter Payment Details</h3>
+              <form onSubmit={handleSubmitPayment}>
+                <div className="form-group">
+                  <label htmlFor="cardNumber">Card Number:</label>
+                  <input
+                    type="text"
+                    id="cardNumber"
+                    name="cardNumber"
+                    value={paymentDetails.cardNumber}
+                    onChange={handlePaymentDetailsChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="expiryDate">Expiry Date:</label>
+                  <input
+                    type="text"
+                    id="expiryDate"
+                    name="expiryDate"
+                    value={paymentDetails.expiryDate}
+                    onChange={handlePaymentDetailsChange}
+                    required
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="cvv">CVV:</label>
+                  <input
+                    type="text"
+                    id="cvv"
+                    name="cvv"
+                    value={paymentDetails.cvv}
+                    onChange={handlePaymentDetailsChange}
+                    required
+                  />
+                </div>
+                <button type="submit">Submit Payment</button>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
