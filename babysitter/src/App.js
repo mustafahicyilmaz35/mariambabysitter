@@ -8,6 +8,8 @@ import SignIn from "./SignIn";
 import Contact from "./Contact";
 import About from "./About";
 import Home from "./Home";
+import Signupbabysitter from "./Signupbabysitter";
+import Signupparent from "./Signupparrent";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
           <Route path="/babysitter/:name" element={<BabysitterDetail />} />
           <Route path="/signup" element={<SignUp />} />
           <Route path="/signin" element={<SignIn />} />
+          <Route path="/signupbabysitter" element={<Signupbabysitter />} />
+          <Route path="/signupparent" element={<Signupparent />} />
         </Routes>
         <Footer />
       </div>
