@@ -1,7 +1,7 @@
 function Signupparent() {
   return (
-    <div>
-      <h1>Signup Parent</h1>
+    <div style={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}>
+      
     </div>
   );
 }
