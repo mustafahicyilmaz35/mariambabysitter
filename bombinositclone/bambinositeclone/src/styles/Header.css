@@ -1,22 +1,95 @@
-.main-header {
-    background-color: #f2f2f2;
-    padding: 1rem 2rem;
+.better-header {
+    background: linear-gradient(to right, #fef9f9, #ec4899);
+    /* daha yumuşak bir pastel zemin */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    border-bottom: 4px solid transparent;
+    border-image: linear-gradient(to right, #6366f1, #ec4899);
+    border-image-slice: 1;
+    min-height: 150px;
+}
+
+.better-header-container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 2rem 2rem;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
 }
 
-.main-header .logo {
-    font-weight: bold;
-    font-size: 1.5rem;
+.header-logo {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #6366f1;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.05);
 }
 
-.main-header nav a {
-    margin-left: 1rem;
+.header-logo span {
+    color: #ec4899;
+}
+
+.header-nav {
+    display: flex;
+    gap: 1.2rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.header-nav a {
     text-decoration: none;
-    color: #333;
+        font-weight: 600;
+        text-transform: uppercase;
+        /* 🔠 büyük harf */
+        letter-spacing: 1px;
+        color: #334155;
+        font-size: 0.95rem;
+        transition: all 0.3s ease;
+        position: relative;
 }
 
-.main-header nav a:hover {
-    color: #007bff;
+.header-nav a::after {
+    content: '';
+    display: block;
+    width: 0%;
+    height: 2px;
+    background: linear-gradient(to right, #6366f1, #ec4899);
+    transition: width 0.3s;
+    margin-top: 4px;
+}
+
+.header-nav a:hover::after {
+    width: 100%;
+}
+
+.header-nav a:hover {
+    color: #6366f1;
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    color: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: background 0.3s ease;
+}
+
+.parent-btn {
+    background-color: #6366f1;
+}
+
+.parent-btn:hover {
+    background-color: #4f46e5;
+}
+
+.sitter-btn {
+    background-color: #ec4899;
+}
+
+.sitter-btn:hover {
+    background-color: #db2777;
 }

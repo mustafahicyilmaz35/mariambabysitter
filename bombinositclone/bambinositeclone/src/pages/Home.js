@@ -44,6 +44,32 @@ const Home = () => {
           </div>
         </section>
 
+        {/* Sign Up Cards Section */}
+        <section className="signup-options">
+          <h2>Join Our Community</h2>
+          <div className="signup-cards">
+            <div className="signup-card">
+              <img
+                src="/images/signup-babysitter.svg"
+                alt="Babysitter Signup"
+              />
+              <h3>Become a Babysitter</h3>
+              <p>Offer your services to families in need of trusted care.</p>
+              <a href="/register-babysitter" className="signup-button">
+                Sign Up as Sitter
+              </a>
+            </div>
+            <div className="signup-card">
+              <img src="/images/signup-parents.svg" alt="Parent Signup" />
+              <h3>Find a Babysitter</h3>
+              <p>Connect with experienced babysitters for your child.</p>
+              <a href="/register-parent" className="signup-button">
+                Sign Up as Parent
+              </a>
+            </div>
+          </div>
+        </section>
+
         {/* About Section */}
         <section className="about">
           <div className="about-content">
